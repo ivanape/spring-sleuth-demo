@@ -9,7 +9,14 @@ import java.util.ArrayList;
 public class FakeCustomerRepository {
 
     public ArrayList<Customer> getCustomerList() {
-        return FakeData.instance.getCustomerList();
+        return FakeData.getInstance().getCustomerList();
     }
 
+    public Customer getCustomerById(int id) {
+
+        return FakeData.getInstance().getCustomerList().stream()
+                .filter(customer -> customer.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
 }

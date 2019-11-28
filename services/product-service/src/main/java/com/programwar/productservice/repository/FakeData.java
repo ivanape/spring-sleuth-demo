@@ -9,18 +9,24 @@ import java.util.ArrayList;
 @Getter
 public class FakeData {
 
+    private static FakeData instance;
+    private ArrayList<Product> productList;
+
     private FakeData() {
 
     }
 
-    public ArrayList<Product> getProductLists() {
-        ArrayList<Product> result = new ArrayList<>();
+    public ArrayList<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList() {
+        productList = new ArrayList<>();
 
         for (int i = 1; i < 150; i++) {
-            result.add(generateProductData(i));
+            productList.add(generateProductData(i));
         }
 
-        return result;
     }
 
     private Product generateProductData(int i) {
@@ -34,5 +40,12 @@ public class FakeData {
         return result;
     }
 
-    public static FakeData instance = new FakeData();
+    public static FakeData getInstance() {
+        if (instance == null) {
+            instance = new FakeData();
+            instance.setProductList();
+        }
+
+        return instance;
+    }
 }

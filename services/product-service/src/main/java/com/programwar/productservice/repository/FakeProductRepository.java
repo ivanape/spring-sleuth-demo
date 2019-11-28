@@ -9,7 +9,15 @@ import java.util.ArrayList;
 public class FakeProductRepository {
 
     public ArrayList<Product> getProductList() {
-        return FakeData.instance.getProductLists();
+        return FakeData.getInstance().getProductList();
+    }
+
+    public Product getCustomerById(int id) {
+
+        return FakeData.getInstance().getProductList().stream()
+                .filter(product -> product.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 
 }

@@ -3,9 +3,7 @@ package com.programwar.customerservice.api;
 import com.programwar.customerservice.Repository.FakeCustomerRepository;
 import com.programwar.customerservice.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -19,10 +17,16 @@ public class CustomerController {
         this.customerRepository = customerRepository;
     }
 
-    @RequestMapping("/customers")
+    @RequestMapping("/customer")
     @GetMapping(produces = "application/json")
-    public ArrayList<Customer> getProductList() {
+    public @ResponseBody ArrayList<Customer> getCustomerList() {
         return this.customerRepository.getCustomerList();
+    }
+
+    @RequestMapping("/customer/{id}")
+    @GetMapping(produces = "application/json")
+    public @ResponseBody Customer getCustomerById(@PathVariable int id) {
+        return this.customerRepository.getCustomerById(id);
     }
 
 }
