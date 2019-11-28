@@ -18,15 +18,13 @@ public class ProductController {
         this.productRepository = productRepo;
     }
 
-    @RequestMapping("/product")
-    @GetMapping(produces = "application/json")
-    public @ResponseBody ArrayList<Product> getProductList() {
+    @GetMapping(path = "/product", produces = "application/json")
+    public ArrayList<Product> getProductList() {
         return this.productRepository.getProductList();
     }
 
-    @RequestMapping("/product/{id}")
-    @GetMapping(produces = "application/json")
-    public @ResponseBody Product getProductById(@PathVariable int id) {
+    @GetMapping(path = "/product/{id}", produces = "application/json")
+    public Product getProductById(@PathVariable int id) {
         return this.productRepository.getCustomerById(id);
     }
 

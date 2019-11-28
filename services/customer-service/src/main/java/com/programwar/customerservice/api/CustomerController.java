@@ -1,6 +1,6 @@
 package com.programwar.customerservice.api;
 
-import com.programwar.customerservice.Repository.FakeCustomerRepository;
+import com.programwar.customerservice.repository.FakeCustomerRepository;
 import com.programwar.customerservice.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,15 +17,13 @@ public class CustomerController {
         this.customerRepository = customerRepository;
     }
 
-    @RequestMapping("/customer")
-    @GetMapping(produces = "application/json")
-    public @ResponseBody ArrayList<Customer> getCustomerList() {
+    @GetMapping(path = "/customer", produces = "application/json")
+    public ArrayList<Customer> getCustomerList() {
         return this.customerRepository.getCustomerList();
     }
 
-    @RequestMapping("/customer/{id}")
-    @GetMapping(produces = "application/json")
-    public @ResponseBody Customer getCustomerById(@PathVariable int id) {
+    @GetMapping(path="/customer/{id}", produces = "application/json")
+    public Customer getCustomerById(@PathVariable int id) {
         return this.customerRepository.getCustomerById(id);
     }
 

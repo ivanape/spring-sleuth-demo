@@ -1,4 +1,4 @@
-package com.programwar.customerservice.Repository;
+package com.programwar.customerservice.repository;
 
 import com.programwar.customerservice.model.Customer;
 import org.springframework.stereotype.Repository;
