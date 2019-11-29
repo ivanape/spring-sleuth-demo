@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from com.programwar.orderservice.repository -->
 	</parent>
 
-	<groupId>com.example</groupId>
+	<groupId>com.programwar</groupId>
 	<artifactId>spring-sleuth-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-sleuth-demo</name>	
@@ -36,7 +36,7 @@
 	</dependencies>
 
    <modules>
-        <module>services/product-service</module>
+		 <module>services/product-service</module>
 		<module>services/customer-service</module>
 		<module>services/order-service</module>
     </modules>	
