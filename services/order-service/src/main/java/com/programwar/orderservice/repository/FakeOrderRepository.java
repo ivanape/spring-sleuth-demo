@@ -14,6 +14,7 @@ import java.util.Random;
 @Repository
 public class FakeOrderRepository {
 
+    public static final int MAX_DETAIL_ORDER = 10;
     private final String productServiceURL = "http://localhost:8082/product";
     private final String customerServiceURL = "http://localhost:8081/customer";
 
@@ -26,7 +27,7 @@ public class FakeOrderRepository {
         this.restTemplateHelper = restTemplateHelper;
     }
 
-    public ArrayList<Order> createOrderSecuence(int orderNumber) {
+    public ArrayList<Order> createFakeOrders(int orderNumber) {
 
         productList = this.restTemplateHelper.getForList(Product.class, productServiceURL);
         customersList = this.restTemplateHelper.getForList(Customer.class, customerServiceURL);
@@ -43,8 +44,17 @@ public class FakeOrderRepository {
     private Order createNewOrder() {
 
         Random rand = new Random();
+        int randomDetailNumber = rand.nextInt(MAX_DETAIL_ORDER);
+        ArrayList<Product> orderDetail = new ArrayList<>();
 
+        for(int i = 0; i < randomDetailNumber; i++) {
+            orderDetail.add(productList.get(rand.nextInt(productList.size())));
+        }
 
-        return null;
+        Order newOrder = new Order();
+        newOrder.setCustomer(customersList.get(rand.nextInt(customersList.size())));
+        newOrder.setProductList(orderDetail);
+
+        return newOrder;
     }
 }
